@@ -1,8 +1,5 @@
 let cardDeck = [
     {
-        image:"plane0.png"
-    },
-    {
         image: "plane1.png",
         text: "At the begining of your end step, if you have no cards in hand,draw seven cards... whever you rall discard your hand"
     },
@@ -352,29 +349,19 @@ let cardsDrawn = 0;
 const drawButton = document.getElementById("draw-button");
 drawButton.addEventListener("click", drawCard);
 
-async function drawCard() {
-  if (cardDeck.length === 0) {
-    alert("No hay más cartas en el mazo");
-    return;
-  }
+function drawCard() {
+    if (cardDeck.length === 0) {
+        alert("No hay más cartas en el mazo");
+        return;
+    }
 
-  const randomIndex = Math.floor(Math.random() * cardDeck.length);
-  const selectedCard = cardDeck.splice(randomIndex, 1)[0];
+    const randomIndex = Math.floor(Math.random() * cardDeck.length);
+    const selectedCard = cardDeck.splice(randomIndex, 1)[0];
 
-  // Fetch para la imagen
-  const response = await fetch(`https://raw.githubusercontent.com/xabrielgonzalez/apiplane/main/img/${selectedCard.image}`);
-  const blob = await response.blob();
-  const imageURL = URL.createObjectURL(blob);
+    const cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = `<img src="img/${selectedCard.image}" alt="card">
+    <p class="cardinfo">${selectedCard.text}</p>`;
 
-  // Actualizar el contenido de la carta
-  const cardContainer = document.getElementById("card-container");
-  cardContainer.innerHTML = `
-    <img src="${imageURL}" alt="card">
-    <p class="cardinfo">${selectedCard.text}</p>
-  `;
-
- 
-
-  cardsDrawn++;
-  console.log(`Carta seleccionada: ${selectedCard.text}. Cartas restantes: ${cardDeck.length}`);
+    cardsDrawn++;
+    console.log(`Carta seleccionada: ${selectedCard.text}. Cartas restantes: ${cardDeck.length}`);
 }
