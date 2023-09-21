@@ -359,8 +359,19 @@ function drawCard() {
     const selectedCard = cardDeck.splice(randomIndex, 1)[0];
 
     const cardContainer = document.getElementById("card-container");
-    cardContainer.innerHTML = `<img src="img/${selectedCard.image}" alt="card">
-    <p class="cardinfo">${selectedCard.text}</p>`;
+    cardContainer.innerHTML = `<button type="button" id="backgroundbutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <img src="img/${selectedCard.image}" alt="card">
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <img src="img/${selectedCard.image}" alt="card">
+        </div>
+      </div>
+    </div>
+  </div>`;
 
     cardsDrawn++;
     console.log(`Carta seleccionada: ${selectedCard.text}. Cartas restantes: ${cardDeck.length}`);

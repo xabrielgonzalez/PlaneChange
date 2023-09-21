@@ -34,6 +34,11 @@ body {
     gap: 1rem;
     margin-bottom: 2rem;
   }
+
+  #backgroundbutton{
+  background: transparent;
+  border: 0;
+  }
   
   @media only screen and (min-width: 600px) {
     #parent-container {
